@@ -77,7 +77,7 @@ def carregarMoedaPagina():
         'sigla':"EUR", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'), 
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -370,5 +370,5 @@ def carregarPacotemoedaTmp():
         print('------------------')
         time.sleep(1)
 
-carregarPacotemoedaTmp()
+# carregarPacotemoedaTmp()
 #carregarPacotemoeda()

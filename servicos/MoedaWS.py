@@ -22,7 +22,6 @@ async def moedas(websockets, path):
                     'cotacao':moeda['cotacao'],
                     'percentual':moeda['percentual']}        
                 )        
-            print(moedas)
         jMoedas = json.dumps(moedas)
         print(jMoedas)
         await websockets.send(jMoedas)

@@ -1,10 +1,12 @@
 import React from 'react';
-import MoedasWS from './MoedasWS';
+import MoedasGraficoWS from './MoedasGraficoWS';
+// import Exemplo from './Exemplo';
 
 function App() {
   return (
     <div className="App">
-      <MoedasWS/>
+      <MoedasGraficoWS/>
+      {/* <Exemplo/> */}
     </div>
   );
 }
