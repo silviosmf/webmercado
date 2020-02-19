@@ -10,12 +10,15 @@ import MoedasColetor
 
 
 async def moedas(websockets, path):
+    index = 1
     while True:
         lMoedas = MoedasColetor.carregarMoedaPagina();
         moedas = []
+        index += 1
         for moeda in lMoedas:
             moedas.append(
                 {
+                    'index':index,
                     'sigla':moeda['sigla'],
                     'data':moeda['data'],    
                     'aberto':moeda['aberto'],
