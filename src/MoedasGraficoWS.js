@@ -52,34 +52,49 @@ class MoedasGraficoWS extends React.Component {
     render() {    
   
         const info = {
-            labels: this.state.moedas.map(item => {return item['index']}),
+            labels: this.state.moedas.map(item => {return item['data']}),
             datasets: [
               {
-                label: 'Rainfall',
-                backgroundColor: 'rgba(75,192,192,1)',
+                label: 'EURO',
+                backgroundColor: 'rgba(0,0,0,.05)',
                 borderColor: 'rgba(0,0,0,1)',
-                borderWidth: 2,
+                borderWidth: 0.2,                
                 data: this.state.moedas.map(item => {return item['cotacao']})
               }
             ]
           } 
+
+        const options={
+            title:{
+                display:true,
+                text:'Dólar x EURO',
+                fontSize:20
+            },
+            scales: {                        
+                yAxes: [{
+                    ticks: {
+                        max: 1,
+                        min: 0.5
+                      }                            
+                }],
+                xAxes: [{
+                    type: 'time',
+                    time: { 
+                        displayFormats: {
+                            day : 'MMM D'
+                            //https://www.chartjs.org/docs/latest/axes/cartesian/time.html#time-cartesian-axis
+                        }
+                    }                         
+                }]
+            }                    
+        }
 
         return (           
 
             <div>
                 <Line
                 data={info}
-                options={{
-                    title:{
-                    display:true,
-                    text:'Average Rainfall per month',
-                    fontSize:20
-                    },
-                    legend:{
-                    display:true,
-                    position:'right'
-                    }
-                }}
+                options={options}
                 />
             </div>
             // <div>
