@@ -12,7 +12,7 @@ import MoedasColetor
 async def moedas(websockets, path):
     index = 1
     while True:
-        lMoedas = MoedasColetor.carregarMoedaPagina();
+        lMoedas = MoedasColetor.carregarMoedaPagina()
         moedas = []
         index += 1
         for moeda in lMoedas:
