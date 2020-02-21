@@ -49,21 +49,21 @@ def carregarMoedaPagina():
     #Obtém as informações do Html da página
     sel = Selector(text=retorno)      
 
-    # # Real
-    # cotacao = sel.css('.pid-2103-bid::text').get()
-    # percentual = sel.css('.pid-2103-pcp::text').get()
-    # hora = sel.css('.pid-2103-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"BRL", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Real
+    cotacao = sel.css('.pid-2103-bid::text').get()
+    percentual = sel.css('.pid-2103-pcp::text').get()
+    hora = sel.css('.pid-2103-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"BRL", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
     # Euro
     cotacao = sel.css('.pid-2124-bid::text').get()
@@ -82,264 +82,264 @@ def carregarMoedaPagina():
     moedas.append(moeda)
 
      
-    # # Libra Esterlina
-    # cotacao = sel.css('.pid-2126-bid::text').get()
-    # percentual = sel.css('.pid-2126-pcp::text').get()
-    # hora = sel.css('.pid-2126-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"GBP", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Libra Esterlina
+    cotacao = sel.css('.pid-2126-bid::text').get()
+    percentual = sel.css('.pid-2126-pcp::text').get()
+    hora = sel.css('.pid-2126-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"GBP", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
 
-    # # Iene Japones
-    # cotacao = sel.css('.pid-3-bid::text').get()
-    # percentual = sel.css('.pid-3-pcp::text').get()
-    # hora = sel.css('.pid-3-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"JPY", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Iene Japones
+    cotacao = sel.css('.pid-3-bid::text').get()
+    percentual = sel.css('.pid-3-pcp::text').get()
+    hora = sel.css('.pid-3-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"JPY", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
              
 
-    # # Franco Suíço
-    # cotacao = sel.css('.pid-4-bid::text').get()
-    # percentual = sel.css('.pid-4-pcp::text').get()
-    # hora = sel.css('.pid-4-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"CHF", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Franco Suíço
+    cotacao = sel.css('.pid-4-bid::text').get()
+    percentual = sel.css('.pid-4-pcp::text').get()
+    hora = sel.css('.pid-4-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"CHF", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Dólar Canadense
-    # cotacao = sel.css('.pid-7-bid::text').get()
-    # percentual = sel.css('.pid-7-pcp::text').get()
-    # hora = sel.css('.pid-7-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"CAD", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Dólar Canadense
+    cotacao = sel.css('.pid-7-bid::text').get()
+    percentual = sel.css('.pid-7-pcp::text').get()
+    hora = sel.css('.pid-7-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"CAD", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Peso argentino
-    # cotacao = sel.css('.pid-2090-bid::text').get()
-    # percentual = sel.css('.pid-2090-pcp::text').get()
-    # hora = sel.css('.pid-2090-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"ARS", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Peso argentino
+    cotacao = sel.css('.pid-2090-bid::text').get()
+    percentual = sel.css('.pid-2090-pcp::text').get()
+    hora = sel.css('.pid-2090-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"ARS", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Dólar australiano
-    # cotacao = sel.css('.pid-2091-bid::text').get()
-    # percentual = sel.css('.pid-2091-pcp::text').get()
-    # hora = sel.css('.pid-2091-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"AUD", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Dólar australiano
+    cotacao = sel.css('.pid-2091-bid::text').get()
+    percentual = sel.css('.pid-2091-pcp::text').get()
+    hora = sel.css('.pid-2091-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"AUD", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Peso Colombiano
-    # cotacao = sel.css('.pid-2112-bid::text').get()
-    # percentual = sel.css('.pid-2112-pcp::text').get()
-    # hora = sel.css('.pid-2112-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"COP", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Peso Colombiano
+    cotacao = sel.css('.pid-2112-bid::text').get()
+    percentual = sel.css('.pid-2112-pcp::text').get()
+    hora = sel.css('.pid-2112-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"COP", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Peso Mexicano
-    # cotacao = sel.css('.pid-39-bid::text').get()
-    # percentual = sel.css('.pid-39-pcp::text').get()
-    # hora = sel.css('.pid-39-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"MXN", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Peso Mexicano
+    cotacao = sel.css('.pid-39-bid::text').get()
+    percentual = sel.css('.pid-39-pcp::text').get()
+    hora = sel.css('.pid-39-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"MXN", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Sol do Perú
-    # cotacao = sel.css('.pid-2177-bid::text').get()
-    # percentual = sel.css('.pid-2177-pcp::text').get()
-    # hora = sel.css('.pid-2177-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"PEN", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Sol do Perú
+    cotacao = sel.css('.pid-2177-bid::text').get()
+    percentual = sel.css('.pid-2177-pcp::text').get()
+    hora = sel.css('.pid-2177-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"PEN", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
 
-    # # Rublo Russo
-    # cotacao = sel.css('.pid-962711-bid::text').get()
-    # percentual = sel.css('.pid-962711-pcp::text').get()
-    # hora = sel.css('.pid-962711-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"RUB", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Rublo Russo
+    cotacao = sel.css('.pid-962711-bid::text').get()
+    percentual = sel.css('.pid-962711-pcp::text').get()
+    hora = sel.css('.pid-962711-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"RUB", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Coroa Sueca
-    # cotacao = sel.css('.pid-41-bid::text').get()
-    # percentual = sel.css('.pid-41-pcp::text').get()
-    # hora = sel.css('.pid-41-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"SEK", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Coroa Sueca
+    cotacao = sel.css('.pid-41-bid::text').get()
+    percentual = sel.css('.pid-41-pcp::text').get()
+    hora = sel.css('.pid-41-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"SEK", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Lira Turca
-    # cotacao = sel.css('.pid-18-bid::text').get()
-    # percentual = sel.css('.pid-18-pcp::text').get()
-    # hora = sel.css('.pid-18-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"TRY", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Lira Turca
+    cotacao = sel.css('.pid-18-bid::text').get()
+    percentual = sel.css('.pid-18-pcp::text').get()
+    hora = sel.css('.pid-18-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"TRY", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Rand Sul-Africano
-    # cotacao = sel.css('.pid-17-bid::text').get()
-    # percentual = sel.css('.pid-17-pcp::text').get()
-    # hora = sel.css('.pid-17-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"ZAR", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Rand Sul-Africano
+    cotacao = sel.css('.pid-17-bid::text').get()
+    percentual = sel.css('.pid-17-pcp::text').get()
+    hora = sel.css('.pid-17-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"ZAR", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Yuan Chinês
-    # cotacao = sel.css('.pid-2111-bid::text').get()
-    # percentual = sel.css('.pid-2111-pcp::text').get()
-    # hora = sel.css('.pid-2111-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"CNY", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Yuan Chinês
+    cotacao = sel.css('.pid-2111-bid::text').get()
+    percentual = sel.css('.pid-2111-pcp::text').get()
+    hora = sel.css('.pid-2111-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"CNY", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Rúpia Indiana
-    # cotacao = sel.css('.pid-160-bid::text').get()
-    # percentual = sel.css('.pid-160-pcp::text').get()
-    # hora = sel.css('.pid-160-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"INR", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Rúpia Indiana
+    cotacao = sel.css('.pid-160-bid::text').get()
+    percentual = sel.css('.pid-160-pcp::text').get()
+    hora = sel.css('.pid-160-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"INR", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
-    # # Peso Chileno
-    # cotacao = sel.css('.pid-2110-bid::text').get()
-    # percentual = sel.css('.pid-2110-pcp::text').get()
-    # hora = sel.css('.pid-2110-time::text').get()
-    # retorno = hora.find(':')
-    # aberto = True
-    # if(retorno == -1):
-    #     aberto = False
-    # moeda = {
-    #     'sigla':"CLP", 
-    #     'data':data,
-    #     'aberto':aberto,
-    #     'cotacao':cotacao, 
-    #     'percentual':percentual}
-    # moedas.append(moeda)
+    # Peso Chileno
+    cotacao = sel.css('.pid-2110-bid::text').get()
+    percentual = sel.css('.pid-2110-pcp::text').get()
+    hora = sel.css('.pid-2110-time::text').get()
+    retorno = hora.find(':')
+    aberto = True
+    if(retorno == -1):
+        aberto = False
+    moeda = {
+        'sigla':"CLP", 
+        'data':data,
+        'aberto':aberto,
+        'cotacao':cotacao, 
+        'percentual':percentual}
+    moedas.append(moeda)
 
     return moedas
 

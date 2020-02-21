@@ -18,7 +18,6 @@ async def moedas(websockets, path):
         for moeda in lMoedas:
             moedas.append(
                 {
-                    'index':index,
                     'sigla':moeda['sigla'],
                     'data':moeda['data'],    
                     'aberto':moeda['aberto'],
