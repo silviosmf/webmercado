@@ -347,22 +347,8 @@ def carregarMoedaPagina():
 # Fim - Carregar Dados do EURO
 #-----------------------------------       
 
-# def carregarPacotemoeda():
-#     while True:
-#         dataAtual = datetime.now()
-#         diaSemana = str(dataAtual.strftime("%w"))
-#         dia = str(dataAtual.strftime("%d-%m-%Y")) 
-#         hora = dataAtual.strftime("%H:%M")
-#         minuto = dataAtual.strftime("%M")
-#         if(diaSemana == 6):
-#             continue
-#         if(int(minuto)%5 == 0):
-#             moedas = carregarmoedaPagina(dia, hora, diaSemana)
-#             pacote = PacoteMoedas(dia,hora,moedas)
-#             salvarPacotemoedaMongoDB(pacote)
-#         time.sleep(60)
 
-def carregarPacotemoedaTmp():
+def carregarPacoteMoedas():
     while True:
         moedas = carregarMoedaPagina()
         # pacote = PacoteMoedas(dia,hora,moedas)
@@ -370,5 +356,4 @@ def carregarPacotemoedaTmp():
         print('------------------')
         time.sleep(1)
 
-# carregarPacotemoedaTmp()
-#carregarPacotemoeda()
+carregarPacoteMoedas()
