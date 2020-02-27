@@ -3,9 +3,6 @@ from urllib.request import urlopen
 from parsel import Selector
 from pymongo import MongoClient
 from datetime import datetime
-# from Classes import Moeda, PacoteMoedas
-
-
 
 #-----------------------
 #Cria e insere valores nas tabelas de Moedas
