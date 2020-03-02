@@ -109,5 +109,4 @@ def carregarIndicePagina():
             'percentual':percentual}
         indices.append(indice)
     
-    df = pd.DataFrame(indices)
-    return df
+    return indices

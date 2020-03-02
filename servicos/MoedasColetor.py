@@ -5,31 +5,6 @@ from pymongo import MongoClient
 from datetime import datetime
 import pandas as pd
 
-#-----------------------
-#Cria e insere valores nas tabelas de Moedas
-# NÃO ESTÁ SALVANDO AS COTAÇÕES
-#-----------------------
-
-# def salvarPacotemoedaMongoDB(pacote):
-#     if(pacote == None):
-#         print("lista de câmbios vazia")
-#         return
-
-#     client = MongoClient(Variaveis.caminhodb,27017)
-#     db = client["GCF"]    
-
-#     moedas = []
-#     for moeda in pacote._listamoeda:
-#         moedas.append({"sigla":moeda._sigla, "cotacao":moeda._cotacao, "porcentagem":moeda._porcentagem})
-
-#     pacoteInsercao = {"dia":pacote._dia,"hora":pacote._hora, "listamoeda":moedas}
-
-#     db.tbl_pacotemoeda.insert_one(pacoteInsercao)
-
-#-----------------------
-# Fim - Cria e insere valores em uma tabela no MongoDB
-#-----------------------
-
 #-----------------------------------
 # Carregar Dados do EURO
 #-----------------------------------
@@ -92,7 +67,7 @@ def carregarMoedaPagina():
         'sigla':"GBP", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -126,7 +101,7 @@ def carregarMoedaPagina():
         'sigla':"CHF", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -142,7 +117,7 @@ def carregarMoedaPagina():
         'sigla':"CAD", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -158,7 +133,7 @@ def carregarMoedaPagina():
         'sigla':"ARS", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -174,7 +149,7 @@ def carregarMoedaPagina():
         'sigla':"AUD", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -190,7 +165,7 @@ def carregarMoedaPagina():
         'sigla':"COP", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -206,7 +181,7 @@ def carregarMoedaPagina():
         'sigla':"MXN", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -222,7 +197,7 @@ def carregarMoedaPagina():
         'sigla':"PEN", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -239,7 +214,7 @@ def carregarMoedaPagina():
         'sigla':"RUB", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -255,7 +230,7 @@ def carregarMoedaPagina():
         'sigla':"SEK", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -271,7 +246,7 @@ def carregarMoedaPagina():
         'sigla':"TRY", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -287,7 +262,7 @@ def carregarMoedaPagina():
         'sigla':"ZAR", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -303,7 +278,7 @@ def carregarMoedaPagina():
         'sigla':"CNY", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -319,7 +294,7 @@ def carregarMoedaPagina():
         'sigla':"INR", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -335,7 +310,7 @@ def carregarMoedaPagina():
         'sigla':"CLP", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'),
         'percentual':percentual}
     moedas.append(moeda)
     # df = pd.DataFrame(moedas)
