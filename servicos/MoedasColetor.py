@@ -3,6 +3,7 @@ from urllib.request import urlopen
 from parsel import Selector
 from pymongo import MongoClient
 from datetime import datetime
+import pandas as pd
 
 #-----------------------
 #Cria e insere valores nas tabelas de Moedas
@@ -337,20 +338,22 @@ def carregarMoedaPagina():
         'cotacao':cotacao, 
         'percentual':percentual}
     moedas.append(moeda)
-
+    # df = pd.DataFrame(moedas)
+    # return df
     return moedas
-
 #-----------------------------------
 # Fim - Carregar Dados do EURO
 #-----------------------------------       
 
 
-def carregarPacoteMoedas():
-    while True:
-        moedas = carregarMoedaPagina()
-        # pacote = PacoteMoedas(dia,hora,moedas)
-        print(moedas)
-        print('------------------')
-        time.sleep(1)
+# def carregarPacoteMoedas():
+#     while True:
+#         moedas = carregarMoedaPagina()
+#         # pacote = PacoteMoedas(dia,hora,moedas)
+#         print(moedas)
+#         print('------------------')
+#         time.sleep(1)
 
-carregarPacoteMoedas()
+def testes():
+    moedas = carregarMoedaPagina()
+    print(moedas)

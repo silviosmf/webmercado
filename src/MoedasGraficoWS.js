@@ -1,13 +1,15 @@
 import React from 'react'
-import {Bar} from 'react-chartjs-2';
+import {Bar, Line} from 'react-chartjs-2';
 
 class MoedasGraficoWS extends React.Component {
 
     ws = new WebSocket('ws://localhost:8765/')
+    maxEuro = '0'
+    minEuro = '10'
 
     constructor(props) {
-
         super(props)
+        
         this.state = {
             euro: [],
             gbp: []
@@ -23,7 +25,16 @@ class MoedasGraficoWS extends React.Component {
             let valores = []
             valores = message;
 
+            if(parseFloat(valores[1].cotacao)>parseFloat(this.maxEuro)) {
+                this.maxEuro = parseFloat(valores[1].cotacao) + parseFloat(0.001)
+            }   
+            if(parseFloat(valores[1].cotacao)<parseFloat(this.minEuro)) {
+                this.minEuro = parseFloat(valores[1].cotacao) - parseFloat(0.001)
+            }                 
+
             console.log(valores[1])
+            console.log('Max Euro: '+this.maxEuro) 
+            console.log('Min Euro: '+this.minEuro) 
             console.log(valores[2])
             
             this.setState({
@@ -45,8 +56,8 @@ class MoedasGraficoWS extends React.Component {
             datasets: [
               {
                 label: 'EURO',
-                backgroundColor: 'rgba(0,0,0,.05)',
-                borderColor: 'rgba(0,0,0,1)',
+                backgroundColor: '#ccc',
+                borderColor: '#ccc',
                 borderWidth: 0.2,                
                 data: this.state.euro.map(item => {return item['cotacao']})
               }
@@ -62,8 +73,8 @@ class MoedasGraficoWS extends React.Component {
             scales: {                        
                 yAxes: [{
                     ticks: {
-                        max: 0.93,
-                        min: 0.92
+                        max: parseFloat(this.maxEuro),
+                        min: parseFloat(this.minEuro)
                       }                            
                 }],
                 xAxes: [{
@@ -118,14 +129,15 @@ class MoedasGraficoWS extends React.Component {
         return (           
 
             <div>
-                <Bar
+                <Line
                 data={info}
                 options={options}
                 />
-                <Bar
+                <Line
                 data={infoGBP}
                 options={optionsGBP}
                 />
+
             </div>
         )
     }

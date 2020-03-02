@@ -102,14 +102,12 @@ def carregarIndicePagina():
         if(retorno == -1):
             aberto = False
         indice = {
-            'indice':df[df.Index == i].Indices[0], 
+            'indice':str(df[df.Index == i].Indices.values[0]), 
             'data':data,
             'aberto':aberto,
             'cotacao':cotacao, 
             'percentual':percentual}
         indices.append(indice)
-
-    print(indices)
-    print(df)
-    print(df[df.Index == 166].Indices[0])
-carregarIndicePagina()
+    
+    df = pd.DataFrame(indices)
+    return df
