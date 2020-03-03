@@ -10,8 +10,9 @@ import IndicesColetor
 
 import pandas as pd
 
-# caminhodb = '10.217.30.40'
-caminhodb = '189.74.27.85'
+caminhodb = '10.217.30.40'
+# caminhodb = '189.74.27.85'
+# caminhodb = 'localhost'
 portadb = 27017
 
 def salvarMoedasMongo():
@@ -32,7 +33,10 @@ def consultarMoedasMongo():
         db = client["GCF"]
         tbl_moedas = db["tbl_moedas"]
         # consulta = {"titulo":noticia.titulo}
-        retorno = tbl_moedas.find()    
+        # consulta = {'data':{'$gte':ISODate('2020-03-03')}}
+        # retorno = tbl_moedas.find()    
+        consulta = {"sigla":"EUR"}
+        retorno = tbl_moedas.find(consulta)  
     except:
         False
     return retorno        
@@ -68,7 +72,8 @@ def executar():
         #Inicia consultas a cada 5 minuto 
         salvarMoedasMongo()
         salvarIndicesMongo()
-        time.sleep(60)
+        time.sleep(300)
+
 
 # moedas = consultarMoedasMongo()
 # df = pd.DataFrame(moedas)
