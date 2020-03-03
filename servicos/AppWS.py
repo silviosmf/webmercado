@@ -5,8 +5,8 @@ from flask import Flask, json
 from flask_cors import CORS
 from flask import request
 import pandas as pd
-sys.path.insert(0,'./MoedasColetor')
-import MoedasColetor
+sys.path.insert(0,'./servicoColetor')
+import servicoColetor
 sys.path.insert(0,'./IndicesColetor')
 import IndicesColetor
 
@@ -16,10 +16,11 @@ CORS(app)
 
 @app.route('/moedas')
 def moedas():
-    df = MoedasColetor.carregarMoedaPagina()
+    retorno = servicoColetor.consultarMoedasMongo()
+    df = pd.DataFrame(retorno)
     print(df)
-    # return df.to_json()
-    return json.dumps(df)
+    # return json.dumps(df[0])
+    return (df.to_json())
 
 @app.route('/indices')
 def indices():

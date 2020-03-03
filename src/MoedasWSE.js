@@ -17,7 +17,7 @@ class MoedasWSE extends React.Component {
             this.setState({
               moedas:res
             });
-
+            console.log(this.state.moedas)
             //Converter Objeto em array de objetos
             // const lista = this.state.moedas.sigla
             // const s = Object.keys(lista).map(item => lista[item])
@@ -27,7 +27,7 @@ class MoedasWSE extends React.Component {
   render() {
     return (
       <div>
-          <h1>Lista de Moedas</h1>
+          {/* <h1>Lista de Moedas</h1>
           <table>
               <tr>
                   <td>Sigla</td>
@@ -41,7 +41,7 @@ class MoedasWSE extends React.Component {
                         <td>{item.percentual}</td>
                     </tr>
                 ))}
-          </table>
+          </table> */}
           <button onClick={this.carregarMoedas}>Carregar Moedas</button>
       </div>
   );

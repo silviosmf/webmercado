@@ -13,6 +13,7 @@ async def moedas(websockets, path):
     index = 1
     while True:
         lMoedas = MoedasColetor.carregarMoedaPagina()
+        # lMoedas = servicoColetor.consultarMoedasMongo()
         moedas = []
         index += 1
         for moeda in lMoedas:
@@ -27,7 +28,7 @@ async def moedas(websockets, path):
         jMoedas = json.dumps(moedas)
         print(jMoedas)
         await websockets.send(jMoedas)
-        await asyncio.sleep(5)
+        await asyncio.sleep(1)
 
 start_server = websockets.serve(moedas, "localhost", 8765)
 

@@ -10,7 +10,8 @@ import IndicesColetor
 
 import pandas as pd
 
-caminhodb = '10.217.30.40'
+# caminhodb = '10.217.30.40'
+caminhodb = '189.74.27.85'
 portadb = 27017
 
 def salvarMoedasMongo():
@@ -37,12 +38,6 @@ def consultarMoedasMongo():
     return retorno        
 
 
-# moedas = consultarMoedasMongo()
-# df = pd.DataFrame(moedas)
-# print(df)
-
-# salvarMoedasMongo()
-
 def salvarIndicesMongo():
     client = MongoClient(caminhodb,portadb)
     db = client.GCF
@@ -66,14 +61,22 @@ def consultarIndicesMongo():
         False
     return retorno        
 
-indices = consultarIndicesMongo()
-df = pd.DataFrame(indices)
-print(df)
 
-while True:
-    #Inicia consultas a cada 5 minuto 
-    salvarMoedasMongo()
-    salvarIndicesMongo()
-    time.sleep(60)
 
+def executar():
+    while True:
+        #Inicia consultas a cada 5 minuto 
+        salvarMoedasMongo()
+        salvarIndicesMongo()
+        time.sleep(60)
+
+# moedas = consultarMoedasMongo()
+# df = pd.DataFrame(moedas)
+# print(df)
+
+# indices = consultarIndicesMongo()
+# df = pd.DataFrame(indices)
+# print(df)
+
+# salvarMoedasMongo()
 # salvarIndicesMongo()

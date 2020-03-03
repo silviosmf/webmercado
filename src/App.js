@@ -1,11 +1,11 @@
 import React from 'react';
 
-import MoedasGraficoWS from './MoedasGraficoWS';
+import MoedasWSE from './MoedasWSE';
 
 function App() {
   return (
     <div className="App">
-      <MoedasGraficoWS/>
+      <MoedasWSE/>
     </div>
   );
 }
