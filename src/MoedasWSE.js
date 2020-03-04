@@ -14,11 +14,17 @@ class MoedasWSE extends React.Component {
         fetch('http://localhost:5000/moedas')
         .then(res => res.json())
         .then(res => {
+            const json = '{"result":true, "count":42}';
+            const obj = JSON.parse(json);
+
+            // const x = JSON.parse({'sigla':'dolar'})
+            console.log(json.count)
             this.setState({
               moedas:res
             });
-            console.log(this.state.moedas)
-            //Converter Objeto em array de objetos
+            // const sigla = this.state.moedas[0]
+            // console.log(sigla)
+            // Converter Objeto em array de objetos
             // const lista = this.state.moedas.sigla
             // const s = Object.keys(lista).map(item => lista[item])
         });        
@@ -27,8 +33,8 @@ class MoedasWSE extends React.Component {
   render() {
     return (
       <div>
-          {/* <h1>Lista de Moedas</h1>
-          <table>
+          <h1>Lista de Moedas</h1>
+          {/* <table>
               <tr>
                   <td>Sigla</td>
                   <td>Cotação</td>

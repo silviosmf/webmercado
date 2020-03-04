@@ -19,8 +19,9 @@ def moedas():
     listaMoedas = []
     for ret in retorno:
         print(ret)
-        listaMoedas.append(ret)
-    return jsonify('listaMoedas[0]')
+        listaMoedas.append(str(ret))
+    # j = str(listaMoedas[0])
+    return jsonify(listaMoedas)
 
 @app.route('/indices')
 def indices():
