@@ -4,7 +4,6 @@ import random
 from flask import Flask, json,jsonify
 from flask_cors import CORS
 from flask import request
-import pandas as pd
 sys.path.insert(0,'./servicoColetor')
 import servicoColetor
 sys.path.insert(0,'./IndicesColetor')
@@ -17,14 +16,11 @@ CORS(app)
 @app.route('/moedas')
 def moedas():
     retorno = servicoColetor.consultarMoedasMongo()
-    df = pd.DataFrame(retorno)
-    # for ret in retorno:
-    #     print(ret)
-    # for d in df:
-    #     print(d)
-    print(df.to_json(orient='records'))
-    # j = json.loads(df.to_json())
-    return jsonify("{'nome':'silvio'}")
+    listaMoedas = []
+    for ret in retorno:
+        print(ret)
+        listaMoedas.append(ret)
+    return jsonify('listaMoedas[0]')
 
 @app.route('/indices')
 def indices():
