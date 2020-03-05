@@ -11,14 +11,21 @@ class MoedasWSE extends React.Component {
       this.carregarMoedas = this.carregarMoedas.bind(this)
     }
       carregarMoedas() {
-        fetch('http://localhost:5000/moedas')
+        const url = 'http://localhost:5000/moedas'
+    // https://www.jsontest.com
+        // const url = 'http://echo.jsontest.com/key/value/one/two'
+        fetch(url)
         .then(res => res.json())
         .then(res => {
-            const json = '{"result":true, "count":42}';
-            const obj = JSON.parse(json);
+            // const json = "{'result':true, 'count':42}";
+            // const obj = JSON.parse(JSON.stringify(json));
 
+            // let lista = []
+            // lista = res;
+
+            // const listaMoedas = lista.map(moeda => moeda.sigla)
             // const x = JSON.parse({'sigla':'dolar'})
-            console.log(json.count)
+            console.log(res)
             this.setState({
               moedas:res
             });

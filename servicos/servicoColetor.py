@@ -7,6 +7,7 @@ sys.path.insert(0,'MoedasColetor')
 import MoedasColetor
 sys.path.insert(0,'IndicesColetor')
 import IndicesColetor
+import json
 
 import pandas as pd
 
@@ -75,7 +76,12 @@ def executar():
         time.sleep(300)
 
 
-# moedas = consultarMoedasMongo()
+moeda = consultarMoedasMongo()
+x = {"nome":"silvio"}
+moedas = json.dumps(x)
+print (moedas)
+# for m in moeda:
+#     print(json.dumps(m))
 # df = pd.DataFrame(moedas)
 # print(df)
 
