@@ -8,11 +8,12 @@ import MoedasColetor
 sys.path.insert(0,'IndicesColetor')
 import IndicesColetor
 import json
+import pandas as pd
 
 import pandas as pd
 
-caminhodb = '10.217.30.40'
-# caminhodb = '189.74.27.85'
+# caminhodb = '10.217.30.40'
+caminhodb = '189.74.27.85'
 # caminhodb = 'localhost'
 portadb = 27017
 
@@ -76,10 +77,14 @@ def executar():
         time.sleep(300)
 
 
-moeda = consultarMoedasMongo()
-x = {"nome":"silvio"}
-moedas = json.dumps(x)
-print (moedas)
+
+dbMoedas = consultarMoedasMongo()
+df = pd.DataFrame(dbMoedas)
+
+print(df.head())
+df.drop(columns=['_id'])
+print(df.head())
+
 # for m in moeda:
 #     print(json.dumps(m))
 # df = pd.DataFrame(moedas)
