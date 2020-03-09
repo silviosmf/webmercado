@@ -14,16 +14,23 @@ app = Flask(__name__)
 
 CORS(app)
 
-@app.route('/moedas')
-def moedas():
-    retorno = servicoColetor.consultarMoedasMongo()
-    listaMoedas = []
-      
-    for m in retorno:
-        print(m)
-    #     listaMoedas.append(str(d.sigla))
-    # j = str(listaMoedas[0])
-    return jsonify('listaMoedas')
+@app.route('/', methods=['GET'])
+def main():
+	return jsonify({'message':'TUDO CERTO'})
+    
+# @app.route('/moedas');
+@app.route('/moedas/<string:sigla_par>', methods=['GET', 'POST'])
+def moedas(sigla_par):
+    retorno = servicoColetor.consultarMoedasSigla(sigla_par.upper())
+    df = pd.DataFrame(retorno)
+    listaMoedas = df.drop(columns=['_id'])
+
+    print(listaMoedas)
+
+    # content = request.json
+    # print (content['sigla_par'])
+
+    return listaMoedas.to_json(orient='records')
 
 @app.route('/indices')
 def indices():

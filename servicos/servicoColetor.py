@@ -37,11 +37,24 @@ def consultarMoedasMongo():
         # consulta = {"titulo":noticia.titulo}
         # consulta = {'data':{'$gte':ISODate('2020-03-04')}}
         # retorno = tbl_moedas.find()    
-        consulta = {"sigla":"EUR"}
-        retorno = tbl_moedas.find(consulta)  
+        # consulta = {"sigla":"EUR"}
+        retorno = tbl_moedas.find()  
     except:
         False
     return retorno        
+
+def consultarMoedasSigla(sigla):
+    client = MongoClient(caminhodb,portadb)
+
+    try:
+        db = client["GCF"]
+        tbl_moedas = db["tbl_moedas"]
+        consulta = {'sigla':sigla}
+        print(consulta)
+        retorno = tbl_moedas.find(consulta)  
+    except:
+        False
+    return retorno   
 
 
 def salvarIndicesMongo():
@@ -65,8 +78,7 @@ def consultarIndicesMongo():
         retorno = tbl_indices.find()    
     except:
         False
-    return retorno        
-
+    return retorno       
 
 
 def executar():
@@ -78,12 +90,9 @@ def executar():
 
 
 
-dbMoedas = consultarMoedasMongo()
-df = pd.DataFrame(dbMoedas)
-
-print(df.head())
-df.drop(columns=['_id'])
-print(df.head())
+# dbMoedas = consultarMoedasMongo()
+# for moeda in dbMoedas:
+#     print(moeda)
 
 # for m in moeda:
 #     print(json.dumps(m))

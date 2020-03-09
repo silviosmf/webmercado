@@ -1,47 +1,80 @@
 import React, { Component } from 'react';
-
+import {Line} from 'react-chartjs-2';
 
 class MoedasWSE extends React.Component {
-
+    maxEuro = 1
+    minEuro = 0
     constructor (props) {
       super(props)
-      this.state = {
+
+        this.state = {
         moedas: []
       }
       this.carregarMoedas = this.carregarMoedas.bind(this)
     }
       carregarMoedas() {
-        const url = 'http://localhost:5000/moedas'
+        const url = 'http://localhost:5000/moedas/eur'
     // https://www.jsontest.com
         // const url = 'http://echo.jsontest.com/key/value/one/two'
         fetch(url)
         .then(res => res.json())
         .then(res => {
-            // const json = "{'result':true, 'count':42}";
-            // const obj = JSON.parse(JSON.stringify(json));
-
-            // let lista = []
-            // lista = res;
-
-            // const listaMoedas = lista.map(moeda => moeda.sigla)
-            // const x = JSON.parse({'sigla':'dolar'})
-            console.log(res)
+            // console.log(res)
             this.setState({
               moedas:res
             });
-            // const sigla = this.state.moedas[0]
-            // console.log(sigla)
-            // Converter Objeto em array de objetos
-            // const lista = this.state.moedas.sigla
-            // const s = Object.keys(lista).map(item => lista[item])
-        });        
+        });    
+
+        this.maxEuro = 1
+        this.minEuro = 0
       }
 
-  render() {
-    return (
-      <div>
-          <h1>Lista de Moedas</h1>
-          {/* <table>
+      render() {    
+  
+        const info = {
+            labels: this.state.moedas.map(item => {return item.data}),
+            datasets: [
+              {
+                label: 'EURO',
+                backgroundColor: '#ccc',
+                borderColor: '#ccc',
+                borderWidth: 0.2,                
+                data: this.state.moedas.map(item => {return item.percentual})
+              }
+            ]
+          } 
+
+        const options={
+            title:{
+                display:true,
+                text:'Dólar x EURO',
+                fontSize:20
+            },
+            scales: {                        
+                yAxes: [{
+                    ticks: {
+                        max: parseFloat(this.maxEuro),
+                        min: parseFloat(this.minEuro)
+                      }                            
+                }],
+                xAxes: [{
+                    type: 'time',
+                    time: {
+                        unit:'minute' 
+                    }                         
+                }]
+            }                    
+        }
+
+
+        return (           
+            <div>
+            <button onClick={this.carregarMoedas}>Carregar Moedas</button>
+                <Line
+                data={info}
+                options={options}
+                />
+          <table>
               <tr>
                   <td>Sigla</td>
                   <td>Cotação</td>
@@ -54,11 +87,10 @@ class MoedasWSE extends React.Component {
                         <td>{item.percentual}</td>
                     </tr>
                 ))}
-          </table> */}
-          <button onClick={this.carregarMoedas}>Carregar Moedas</button>
-      </div>
-  );
-  }
+          </table>
+            </div>
+        )
+    }
 
 }
 
