@@ -34,7 +34,7 @@ def carregarMoedaPagina():
         'sigla':"BRL", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'), 
         'percentual':percentual}
     moedas.append(moeda)
 
@@ -84,7 +84,7 @@ def carregarMoedaPagina():
         'sigla':"JPY", 
         'data':data,
         'aberto':aberto,
-        'cotacao':cotacao, 
+        'cotacao':cotacao.replace(',','.'), 
         'percentual':percentual}
     moedas.append(moeda)
              

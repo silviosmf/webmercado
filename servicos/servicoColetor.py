@@ -12,8 +12,8 @@ import pandas as pd
 
 import pandas as pd
 
-# caminhodb = '10.217.30.40'
-caminhodb = '189.74.27.85'
+caminhodb = '10.217.30.40'
+# caminhodb = '189.74.27.85'
 # caminhodb = 'localhost'
 portadb = 27017
 
@@ -43,6 +43,20 @@ def consultarMoedasMongo():
         False
     return retorno        
 
+def consultarMoedasDia(sigla):
+    client = MongoClient(caminhodb,portadb)
+    agora = datetime.datetime.now()
+    consulta = {'sigla':sigla, 'data':{'$gte':datetime.datetime(agora.year,agora.month,agora.day)}} 
+    try:
+        db = client["GCF"]
+        tbl_moedas = db["tbl_moedas"]
+        print(consulta)
+        retorno = tbl_moedas.find(consulta)  
+    except:
+        False
+    return retorno   
+
+
 def consultarMoedasSigla(sigla):
     client = MongoClient(caminhodb,portadb)
 
@@ -50,7 +64,6 @@ def consultarMoedasSigla(sigla):
         db = client["GCF"]
         tbl_moedas = db["tbl_moedas"]
         consulta = {'sigla':sigla}
-        print(consulta)
         retorno = tbl_moedas.find(consulta)  
     except:
         False
@@ -89,8 +102,8 @@ def executar():
         time.sleep(300)
 
 
-
-# dbMoedas = consultarMoedasMongo()
+executar()
+# dbMoedas = consultarMoedasDia('GBP')
 # for moeda in dbMoedas:
 #     print(moeda)
 

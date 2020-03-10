@@ -32,6 +32,20 @@ def moedas(sigla_par):
 
     return listaMoedas.to_json(orient='records')
 
+# @app.route('/moedas');
+@app.route('/moedasAgora/<string:sigla_par>', methods=['GET', 'POST'])
+def moedasAgora(sigla_par):
+    retorno = servicoColetor.consultarMoedasDia(sigla_par.upper())
+    df = pd.DataFrame(retorno)
+    listaMoedas = df.drop(columns=['_id'])
+
+    print(listaMoedas)
+
+    # content = request.json
+    # print (content['sigla_par'])
+
+    return listaMoedas.to_json(orient='records')
+
 @app.route('/indices')
 def indices():
     df = IndicesColetor.carregarIndicePagina()
