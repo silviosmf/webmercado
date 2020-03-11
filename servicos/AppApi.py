@@ -5,8 +5,8 @@ from flask import Flask, json,jsonify
 from flask_cors import CORS
 import pandas as pd
 from flask import request
-sys.path.insert(0,'./servicoColetor')
-import servicoColetor
+sys.path.insert(0,'./Persistencia')
+import Persistencia
 sys.path.insert(0,'./IndicesColetor')
 import IndicesColetor
 
@@ -21,21 +21,18 @@ def main():
 # @app.route('/moedas');
 @app.route('/moedas/<string:sigla_par>', methods=['GET', 'POST'])
 def moedas(sigla_par):
-    retorno = servicoColetor.consultarMoedasSigla(sigla_par.upper())
+    retorno = Persistencia.consultarMoedasSigla(sigla_par.upper())
     df = pd.DataFrame(retorno)
     listaMoedas = df.drop(columns=['_id'])
 
     print(listaMoedas)
-
-    # content = request.json
-    # print (content['sigla_par'])
 
     return listaMoedas.to_json(orient='records')
 
 # @app.route('/moedas');
 @app.route('/moedasAgora/<string:sigla_par>', methods=['GET', 'POST'])
 def moedasAgora(sigla_par):
-    retorno = servicoColetor.consultarMoedasDia(sigla_par.upper())
+    retorno = Persistencia.consultarMoedasDia(sigla_par.upper())
     df = pd.DataFrame(retorno)
     listaMoedas = df.drop(columns=['_id'])
 
