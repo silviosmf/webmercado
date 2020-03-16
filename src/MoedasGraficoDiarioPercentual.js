@@ -5,8 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 class MoedasGraficoApi extends React.Component {
-    max = 10
+    max = 0
     min = 0
+    maxCotacao = 0
+    minCotacao = 0
     constructor (props) {
         super(props)
         this.carregarMoedas('BRL')
@@ -20,19 +22,34 @@ class MoedasGraficoApi extends React.Component {
         fetch(url)
         .then(res => res.json())
         .then(res => {
-            console.log(this.state.moedas)
-            console.log(sigla)
-            console.log(res[0].cotacao)
-            this.max = parseFloat(res[0].cotacao)
-            this.min = parseFloat(res[0].cotacao)
+            // console.log(this.state.moedas)
+            // console.log(sigla)
+            // console.log(res[0].percentual.split('%')[0].replace(',','.'))
+
+            let strPercentual = parseFloat(res[0].percentual.split('%')[0].replace(',','.'))
+            let strCotacao = parseFloat(res[0].cotacao)
+
+            this.max = strPercentual
+            this.min = strPercentual
+
+            this.maxCotacao = this.minCotacao = strCotacao
 
             for (var i = 0; i < res.length; i++) {
-                if(this.max < parseFloat(res[i].cotacao)){
-                    this.max = res[i].cotacao
+                let strPercentual = parseFloat(res[i].percentual.split('%')[0].replace(',','.'))
+                if(this.max < strPercentual){
+                    this.max = strPercentual
                 }
-                if(this.min > parseFloat(res[i].cotacao)){
-                    this.min = res[i].cotacao
-                }                
+                if(this.min > strPercentual){
+                    this.min = strPercentual
+                }           
+                
+                let strCotacao = parseFloat(res[i].cotacao)
+                if(this.maxCotacao < strCotacao){
+                    this.maxCotacao = strCotacao
+                }
+                if(this.minCotacao > strCotacao){
+                    this.minCotacao = strCotacao
+                }                     
             }            
             this.setState({
               moedas:res
@@ -48,19 +65,6 @@ class MoedasGraficoApi extends React.Component {
         if(document.getElementById('selectMoedas') != null)       
             cabecalho = 'Dólar x '+document.getElementById('selectMoedas').value
 
-        const info = {
-            labels: this.state.moedas.map(item => {return item.data}),
-            datasets: [
-              {
-                label: 'EURO',
-                backgroundColor: 'rgb(240,248,255)',                
-                borderColor: 'rgb(0,0,128)',
-                borderWidth: 0.5,                
-                data: this.state.moedas.map(item => {return item.cotacao})
-              }
-            ]
-          } 
-
         const infoPercentual = {
             labels: this.state.moedas.map(item => {return item.data}),
             datasets: [
@@ -74,31 +78,6 @@ class MoedasGraficoApi extends React.Component {
             ]
           } 
 
-          const options={
-                title:{
-                    display:true,                
-                    text:cabecalho,
-                    fontSize:20
-                },
-                scales: {                        
-                    yAxes: [{
-                        ticks: {
-                            max: parseFloat(this.max)+0.002,
-                            min: parseFloat(this.min)-0.002
-                        }                            
-                    }],
-                    xAxes: [{
-                        type: 'time',
-                        time: {
-                            displayFormats: {
-                                minute : 'h:mm a'
-                                //https://www.chartjs.org/docs/latest/axes/cartesian/time.html#time-cartesian-axis
-                            }
-                        }                         
-                    }]
-                }                    
-            }
-
 
             const optionsPercentual={
                 title:{
@@ -109,8 +88,10 @@ class MoedasGraficoApi extends React.Component {
                 scales: {                        
                     yAxes: [{
                         ticks: {
-                            max: parseFloat(3),
-                            min: parseFloat(-3)
+                            max: parseFloat(this.max)+0.3,
+                            min: parseFloat(this.min)-0.3                            
+                            // max: parseFloat(3),
+                            // min: parseFloat(-3)
                         }                            
                     }],
                     xAxes: [{
@@ -126,10 +107,6 @@ class MoedasGraficoApi extends React.Component {
             }
         return (           
             <div>            
-                <Line
-                    data={info}
-                    options={options}
-                />
                 <Line
                     data={infoPercentual}
                     options={optionsPercentual}
@@ -153,23 +130,41 @@ class MoedasGraficoApi extends React.Component {
                     <option value="CNY">Yuan Chinês</option>                    
                     <option value="INR">Rúpia Indiana</option>
                     <option value="CLP">Peso Chileno</option>
-                </select>                
-
-                <table>
-                    <tr>
-                        <td>Sigla</td>
-                        <td>Cotação</td>
-                        <td>Percentual</td>
-                    </tr>            
-                    {this.state.moedas.map(item => (
-                            <tr>
-                                <td>{item.sigla}</td>
-                                <td>{item.cotacao}</td>
-                                <td>{item.percentual.split('%')[0]}</td>
-                            </tr>
-                        ))}
-                </table>
-
+                </select>      
+                <p ></p>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Percentual</th>
+                        <th scope="col">Cotação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                Máxima diária
+                            </th>
+                            <td>
+                                {this.max}
+                            </td>
+                            <td>
+                                {this.maxCotacao}
+                            </td>
+                        </tr>                   
+                        <tr>
+                            <th scope="row">
+                                Mínima diária
+                            </th>
+                            <td>
+                                {this.min}
+                            </td>
+                            <td>
+                                {this.minCotacao}
+                            </td>
+                        </tr> 
+                    </tbody>                   
+                </table>          
             </div>
         )
     }
