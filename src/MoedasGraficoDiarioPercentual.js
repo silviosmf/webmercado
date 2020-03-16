@@ -2,13 +2,20 @@ import React, { Component } from 'react';
 import {Line} from 'react-chartjs-2';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Moment from 'react-moment';
+import moment from 'moment';
 
 
 class MoedasGraficoApi extends React.Component {
     max = 0
     min = 0
+    ultima = 0
     maxCotacao = 0
-    minCotacao = 0
+    minCotacao = 0    
+    ultimaCotacao = 0
+    horaMax = 0
+    horaMin = 0
+    horaUltima = 0
     constructor (props) {
         super(props)
         this.carregarMoedas('BRL')
@@ -30,27 +37,38 @@ class MoedasGraficoApi extends React.Component {
             let strCotacao = parseFloat(res[0].cotacao)
 
             this.max = strPercentual
-            this.min = strPercentual
+            this.min = strPercentual            
+            this.maxCotacao = this.minCotacao = strCotacao            
 
-            this.maxCotacao = this.minCotacao = strCotacao
-
-            for (var i = 0; i < res.length; i++) {
+            for(let i = 0; i < res.length; i++) {
+                let strCotacao = parseFloat(res[i].cotacao)
                 let strPercentual = parseFloat(res[i].percentual.split('%')[0].replace(',','.'))
                 if(this.max < strPercentual){
                     this.max = strPercentual
+                    this.maxCotacao = strCotacao
+                    this.horaMax = res[i].data
                 }
                 if(this.min > strPercentual){
                     this.min = strPercentual
-                }           
-                
-                let strCotacao = parseFloat(res[i].cotacao)
-                if(this.maxCotacao < strCotacao){
-                    this.maxCotacao = strCotacao
-                }
-                if(this.minCotacao > strCotacao){
                     this.minCotacao = strCotacao
-                }                     
+                    this.horaMin = res[i].data
+                }           
+                                
+                this.ultima = strPercentual
+                this.ultimaCotacao = strCotacao
+                // this.horaUltima = res[i].data
+                var data = new Date(res[i].data);
+                // this.horaUltima = data.getUTCHours()
+                // this.horaUltima = data.getUTCHours()+"/"+data.getUTCMinutes()+"/"+data.getUTCSeconds()
+                // tz('America/Los_Angeles')
+                // var saopaulo    = Moment.globalTimezone("America/Sao_Paulo");                
+                // var uData = new Date(data.getUTCHours());
+                console.log(data.getUTCHours()+":"+data.getUTCMinutes()+":"+data.getUTCSeconds())
+                // this.horaUltima = uData
+                // this.horaUltima = data
             }            
+                              
+            
             this.setState({
               moedas:res
             });
@@ -151,6 +169,9 @@ class MoedasGraficoApi extends React.Component {
                             <td>
                                 {this.maxCotacao}
                             </td>
+                            <td>
+                                {this.horaMax}
+                            </td>
                         </tr>                   
                         <tr>
                             <th scope="row">
@@ -161,6 +182,23 @@ class MoedasGraficoApi extends React.Component {
                             </td>
                             <td>
                                 {this.minCotacao}
+                            </td>
+                            <td>
+                                {this.horaMin}
+                            </td>
+                        </tr> 
+                        <tr>
+                            <th scope="row">
+                                Última diária
+                            </th>
+                            <td>
+                                {this.ultima}
+                            </td>
+                            <td>
+                                {this.ultimaCotacao}
+                            </td>
+                            <td>                                                       
+                                <Moment format="hh:mm:ss">{this.horaUltima}</Moment>
                             </td>
                         </tr> 
                     </tbody>                   
