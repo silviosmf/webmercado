@@ -3,8 +3,7 @@ import {Line} from 'react-chartjs-2';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Moment from 'react-moment';
-import moment from 'moment';
-
+import './css/principal.css';
 
 class MoedasGraficoApi extends React.Component {
     max = 0
@@ -41,31 +40,33 @@ class MoedasGraficoApi extends React.Component {
             this.maxCotacao = this.minCotacao = strCotacao            
 
             for(let i = 0; i < res.length; i++) {
+
+                var data = new Date(res[i].data)
+                var d = new Date()
+                d.setHours(data.getUTCHours())
+                d.setMinutes(data.getUTCMinutes())
+                d.setSeconds(data.getUTCSeconds())
+                
                 let strCotacao = parseFloat(res[i].cotacao)
                 let strPercentual = parseFloat(res[i].percentual.split('%')[0].replace(',','.'))
                 if(this.max < strPercentual){
                     this.max = strPercentual
                     this.maxCotacao = strCotacao
-                    this.horaMax = res[i].data
+                    
+                    this.horaMax = d
                 }
                 if(this.min > strPercentual){
                     this.min = strPercentual
                     this.minCotacao = strCotacao
-                    this.horaMin = res[i].data
+                    this.horaMin = d
                 }           
                                 
                 this.ultima = strPercentual
                 this.ultimaCotacao = strCotacao
-                // this.horaUltima = res[i].data
-                var data = new Date(res[i].data);
-                // this.horaUltima = data.getUTCHours()
-                // this.horaUltima = data.getUTCHours()+"/"+data.getUTCMinutes()+"/"+data.getUTCSeconds()
-                // tz('America/Los_Angeles')
-                // var saopaulo    = Moment.globalTimezone("America/Sao_Paulo");                
-                // var uData = new Date(data.getUTCHours());
-                console.log(data.getUTCHours()+":"+data.getUTCMinutes()+":"+data.getUTCSeconds())
-                // this.horaUltima = uData
-                // this.horaUltima = data
+                // var data = new Date(res[i].data).toLocaleString('en-US',{timeZone:'America/New_York'});
+                // var data = new Date(res[i].data).toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo'});
+
+                this.horaUltima = d
             }            
                               
             
@@ -84,7 +85,14 @@ class MoedasGraficoApi extends React.Component {
             cabecalho = 'Dólar x '+document.getElementById('selectMoedas').value
 
         const infoPercentual = {
-            labels: this.state.moedas.map(item => {return item.data}),
+            labels: this.state.moedas.map(item => {
+                var d = new Date()                
+                var data = new Date(item.data)                
+                d.setHours(data.getUTCHours())
+                d.setMinutes(data.getUTCMinutes())
+                d.setSeconds(data.getUTCSeconds())
+                return d
+            }),
             datasets: [
               {
                 label: 'EURO',
@@ -108,16 +116,13 @@ class MoedasGraficoApi extends React.Component {
                         ticks: {
                             max: parseFloat(this.max)+0.3,
                             min: parseFloat(this.min)-0.3                            
-                            // max: parseFloat(3),
-                            // min: parseFloat(-3)
                         }                            
                     }],
                     xAxes: [{
                         type: 'time',
                         time: {
                             displayFormats: {
-                                minute : 'h:mm a'
-                                //https://www.chartjs.org/docs/latest/axes/cartesian/time.html#time-cartesian-axis
+                                minute : 'h:mm a'                                
                             }
                         }                         
                     }]
@@ -150,7 +155,7 @@ class MoedasGraficoApi extends React.Component {
                     <option value="CLP">Peso Chileno</option>
                 </select>      
                 <p ></p>
-                <table class="table table-hover">
+                <table class="table table-hover tamanhoFonte">
                     <thead>
                         <tr>
                         <th scope="col"></th>
@@ -170,7 +175,7 @@ class MoedasGraficoApi extends React.Component {
                                 {this.maxCotacao}
                             </td>
                             <td>
-                                {this.horaMax}
+                                <Moment format="hh:mm:ss">{this.horaMax}</Moment>
                             </td>
                         </tr>                   
                         <tr>
@@ -184,7 +189,7 @@ class MoedasGraficoApi extends React.Component {
                                 {this.minCotacao}
                             </td>
                             <td>
-                                {this.horaMin}
+                                <Moment format="hh:mm:ss">{this.horaMin}</Moment>
                             </td>
                         </tr> 
                         <tr>

@@ -11,9 +11,9 @@ def executar():
         Persistencia.salvarIndicesMongo()
         time.sleep(300)
 
-executar()
+# executar()
 
-# dbMoedas = Persistencia.consultarMoedasDia('BRL')
+# dbMoedas = Persistencia.consultarMoedasMongo()
 # for moeda in dbMoedas:
 #     print(moeda)
 

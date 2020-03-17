@@ -10,8 +10,6 @@ import IndicesColetor
 import json
 import pandas as pd
 
-import pandas as pd
-
 caminhodb = '10.217.30.40'
 # caminhodb = '189.74.27.85'
 # caminhodb = 'localhost'
@@ -43,6 +41,27 @@ def consultarMoedasMongo():
     except:
         False
     return retorno        
+
+
+def dropMoedas(sigla):
+    client = MongoClient(caminhodb,portadb)
+    # agora = datetime.datetime.now()
+    agora = datetime.datetime(2020, 3, 17, 9, 0, 0, 342380)
+    print(agora)
+    consulta = {'sigla':sigla, 'data':{'$lte':agora}} 
+    try:
+        db = client["GCF"]
+        tbl_moedas = db["tbl_moedas"]
+        print(consulta)
+        # tbl_moedas.remove(consulta)
+        retorno = tbl_moedas.find()  
+    except:
+        False
+    df = pd.DataFrame(retorno)        
+    print(df)
+    return retorno       
+
+dropMoedas("BRL")    
 
 def consultarMoedasDia(sigla):
     client = MongoClient(caminhodb,portadb)
