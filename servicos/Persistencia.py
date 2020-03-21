@@ -10,8 +10,8 @@ import IndicesColetor
 import json
 import pandas as pd
 
-caminhodb = '10.217.30.40'
-# caminhodb = '189.74.27.85'
+# caminhodb = '10.217.30.40'
+caminhodb = '189.74.27.85'
 # caminhodb = 'localhost'
 portadb = 27017
 
